@@ -1,0 +1,17 @@
+{
+  "roles": ["role1", "role2", "role3"],
+  "tabs": [
+    { "id": 1, "title": "Tab 1", "roles": ["role1"] },
+    { "id": 2, "title": "Tab 2", "roles": ["role2"] },
+    { "id": 3, "title": "Tab 3", "roles": ["role3"] }
+  ],
+  "titles": [
+    {
+      "id": 1,
+      "label": "GOS",
+      "roles": ["role 1"],
+      "tabs": ["Tab 1", "Tab 2"]
+    },
+    { "id": 2, "label": "MOS", "roles": ["role 1"], "tabs": ["Tab 1"] }
+  ]
+}

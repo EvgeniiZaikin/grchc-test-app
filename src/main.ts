@@ -1,6 +1,14 @@
 import { createApp } from "vue";
-import App from "./App.vue";
+import App from "@/App.vue";
 
-import "./assets/reset.css";
+import "@/assets/reset.css";
 
-createApp(App).mount("#app");
+import router from "@/router";
+import store from "@/store";
+
+const app = createApp(App);
+
+app.use(router);
+app.use(store);
+
+app.mount("#app");
