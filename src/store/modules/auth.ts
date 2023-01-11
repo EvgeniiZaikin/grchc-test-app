@@ -1,12 +1,12 @@
 export interface IAuthState {
-  role: string | null;
+  role: string;
 }
 
 export default {
   namespaced: true,
   state: (): IAuthState => {
     return {
-      role: null,
+      role: "",
     };
   },
   mutations: {

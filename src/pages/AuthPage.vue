@@ -3,8 +3,10 @@
     <v-row class="fill-height" align="center" justify="center">
       <v-form ref="form" style="width: 500px" @submit.prevent="onSubmit">
         <v-text-field
+          variant="outlined"
           v-model="role"
           label="Введите пользователя"
+          :rules="[(value: string) => !!value || 'Обязательное поле']"
         ></v-text-field>
         <v-btn prepend-icon="mdi-account-check" variant="plain" type="submit">
           Войти
@@ -32,11 +34,15 @@ export default {
     };
   },
   methods: {
-    onSubmit(): void {
-      if (data.roles.includes(this.role)) {
-        store.commit("auth/setRole", this.role);
-        router.push("/main");
-      } else alert("Введённой роли не существует!");
+    async onSubmit(): Promise<void> {
+      const { valid } = await (this.$refs.form as HTMLFormElement).validate();
+
+      if (valid) {
+        if (data.roles.includes(this.role)) {
+          store.commit("auth/setRole", this.role);
+          router.push("/main");
+        } else alert("Введённой роли не существует!");
+      }
     },
   },
 };

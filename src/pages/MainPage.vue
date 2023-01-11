@@ -4,15 +4,15 @@
     <template v-slot:append>
       <v-btn icon="mdi-logout" @click="onExit"></v-btn>
     </template>
+    <template v-slot:extension>
+      <v-tabs v-model="activeTab">
+        <v-tab v-for="tab in tabs" :key="tab.id" :value="tab.title">{{
+          tab.title
+        }}</v-tab>
+      </v-tabs>
+    </template>
   </v-app-bar>
-  <section>
-    <v-tabs v-model="activeTab">
-      <v-tab v-for="tab in tabs" :key="tab.id" :value="tab.title">{{
-        tab.title
-      }}</v-tab>
-    </v-tabs>
-  </section>
-  <section v-if="activeTab.length">
+  <section v-if="activeTab.length" style="margin-top: 1rem">
     <v-list lines="one">
       <v-list-item
         v-for="item in items"
@@ -53,18 +53,18 @@ export default {
     };
   },
   computed: {
-    role(): string | null {
+    role(): string {
       return store.state.auth.role;
     },
     tabs(): ITab[] {
       return data.tabs.filter((tab: ITab) =>
-        tab.roles.includes(store.state.auth.role || "")
+        tab.roles.includes(store.state.auth.role)
       );
     },
     items(): IItem[] {
       return data.items.filter(
         (item: IItem) =>
-          item.roles.includes(store.state.auth.role || "") &&
+          item.roles.includes(store.state.auth.role) &&
           item.tabs.includes(this.activeTab)
       );
     },
