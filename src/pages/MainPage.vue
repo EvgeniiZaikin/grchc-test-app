@@ -1,20 +1,32 @@
 <template>
-  <h1>MainPage with role - {{ role }}</h1>
+  <v-app-bar :elevation="0">
+    <v-app-bar-title>Текущая роль - {{ role }}</v-app-bar-title>
+    <template v-slot:append>
+      <v-btn icon="mdi-logout" @click="onExit"></v-btn>
+    </template>
+  </v-app-bar>
   <section>
-    <button v-for="tab in tabs" :key="tab.id" @click="onTabClick(tab.title)">
-      {{ tab.title }}
-    </button>
+    <v-tabs v-model="activeTab">
+      <v-tab v-for="tab in tabs" :key="tab.id" :value="tab.title">{{
+        tab.title
+      }}</v-tab>
+    </v-tabs>
   </section>
   <section v-if="activeTab.length">
-    <ul>
-      <li v-for="item in items" :key="item.id">{{ item.label }}</li>
-    </ul>
+    <v-list lines="one">
+      <v-list-item
+        v-for="item in items"
+        :key="item.id"
+        :title="item.label"
+      ></v-list-item>
+    </v-list>
   </section>
 </template>
 
 <script lang="ts">
 import data from "@/data/data.json";
 
+import router from "@/router";
 import store from "@/store";
 
 interface ITab {
@@ -58,8 +70,9 @@ export default {
     },
   },
   methods: {
-    onTabClick(tabTitle: string): void {
-      this.activeTab = tabTitle;
+    onExit(): void {
+      store.commit("auth/setRole", null);
+      router.push("/");
     },
   },
 };
