@@ -1,8 +1,17 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <input v-model="role" type="text" />
-    <input type="submit" value="Войти" />
-  </form>
+  <v-container class="fill-height" fluid>
+    <v-row class="fill-height" align="center" justify="center">
+      <v-form ref="form" style="width: 500px" @submit.prevent="onSubmit">
+        <v-text-field
+          v-model="role"
+          label="Введите пользователя"
+        ></v-text-field>
+        <v-btn prepend-icon="mdi-account-check" variant="plain" type="submit">
+          Войти
+        </v-btn>
+      </v-form>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
