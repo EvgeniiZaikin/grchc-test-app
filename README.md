@@ -1,40 +1,49 @@
-# grchc-test-app
+## Условие задачи
 
-This template should help get you started developing with Vue 3 in Vite.
+### Дано
 
-## Recommended IDE Setup
+3 пользователя: П1, П2, П3.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+3 пункта меню: ПМ1, ПМ2, ПМ3.
 
-## Type Support for `.vue` Imports in TS
+3 таблицы с данными (идентификаторы произвольные): Т1 (ДФО, ЦФО, ДФО, УФО, ЦФО), Т2 (ЦФО, ДФО, ЦФО, СФО, СЗФО, ДФО), Т3 (СФО, ЦФО, СФО, УФО, СЗФО).
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+Нажатие по ПМ1 отображает данные из Т1, по ПМ2 из Т2, по ПМ3 из Т3.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### Реализовать (с авторизацией)
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+П1 видит ПМ1, ПМ2, ПМ3 и все данные.
 
-## Customize configuration
+П2 видит ПМ1, ПМ2 и данные, ограниченные ДФО.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+П3 видит ПМ2, ПМ3 и данные, ограниченные СФО, СЗФО.
 
-## Project Setup
+## Используемые технологии
+
+1. JavaScript, TypeScript - как языки программирования
+2. Vue - как основной фреймворк разработки пользовательского интерфейса
+3. Vuex - как система хранения данных
+4. VueRouter - как система навигации
+5. Vuetify - как библиотека готовых UI компонентов
+
+## Скачать проект
+
+```sh
+git clone https://github.com/EvgeniiZaikin/grchc-test-app.git
+```
+
+## Перейти в папку с проектом и выполнить следующую команду
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Запустить приложение (по умолчанию на порту 5173)
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Данные для приложения
 
-```sh
-npm run build
-```
+Данные для приложения храняться в файле `src/data/data.json`. Чтобы изменить данные нужно остановить приложение `Ctrl / Cmd + C`, изменить JSON файл и запустить приложение заного.
