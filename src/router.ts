@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-import AuthPage from "@/pages/AuthPage.vue";
-import MainPage from "@/pages/MainPage.vue";
+const AuthPage = () => import("@/pages/AuthPage.vue");
+const MainPage = () => import("@/pages/MainPage.vue");
 
 const routes = [
   { path: "/", component: AuthPage },

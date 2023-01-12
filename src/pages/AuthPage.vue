@@ -19,9 +19,6 @@
 <script lang="ts">
 import data from "@/data/data.json";
 
-import router from "@/router";
-import store from "@/store";
-
 interface IAuthPageData {
   role: string;
 }
@@ -39,8 +36,8 @@ export default {
 
       if (valid) {
         if (data.roles.includes(this.role)) {
-          store.commit("auth/setRole", this.role);
-          router.push("/main");
+          this.$store.commit("auth/setRole", this.role);
+          this.$router.push("/main");
         } else alert("Введённой роли не существует!");
       }
     },

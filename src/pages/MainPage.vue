@@ -25,9 +25,6 @@
 <script lang="ts">
 import data from "@/data/data.json";
 
-import router from "@/router";
-import store from "@/store";
-
 interface IMainPageData {
   activeTab: string;
 }
@@ -40,12 +37,12 @@ export default {
   },
   computed: {
     role(): string {
-      return store.state.auth.role;
+      return this.$store.state.auth.role;
     },
     tabs(): string[] {
       const roleTabs: Record<string, string[]> = data["role-tabs"];
       return data.tabs.filter((tab: string) =>
-        roleTabs[store.state.auth.role]?.includes(tab)
+        roleTabs[this.$store.state.auth.role]?.includes(tab)
       );
     },
     items(): string[] {
@@ -53,20 +50,20 @@ export default {
       const roleItems: Record<string, string[]> = data["role-items"];
       const items: string[] = tabItems[this.activeTab];
       return items.filter((item: string) =>
-        roleItems[store.state.auth.role]?.includes(item)
+        roleItems[this.$store.state.auth.role]?.includes(item)
       );
     },
   },
   methods: {
     async onExit(): Promise<void> {
-      await router.push("/");
-      store.commit("auth/setRole", null);
+      await this.$router.push("/");
+      this.$store.commit("auth/setRole", "");
     },
   },
   created() {
     const roleTabs: Record<string, string[]> = data["role-tabs"];
-    if (roleTabs[store.state.auth.role]?.length) {
-      this.activeTab = roleTabs[store.state.auth.role][0];
+    if (roleTabs[this.$store.state.auth.role]?.length) {
+      this.activeTab = roleTabs[this.$store.state.auth.role][0];
     }
   },
 };
